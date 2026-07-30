@@ -1,6 +1,9 @@
 let timerId = null; 
 const label = document.getElementById('autoJbLabel');
+const label2 = document.getElementById('autoJbLabel2');
+const label3 = document.getElementById('autoJbLabel3');
 const checkbox = document.getElementById('autoJbInput');
+const checkbox2 = document.getElementById('autoJbInput2');
 const jeilbrekBtn = document.getElementById('jeilbrek');
 const UAElement = document.getElementById("UA");
 
@@ -28,13 +31,14 @@ jeilbrekBtn.addEventListener("click", function (e){
     doJb();
 });
 
-checkbox.addEventListener('change', function () {
-    localStorage.setItem("autoJb", checkbox.checked);
-    if (checkbox.checked == true && jeilbrekBtn.disabled == false) {
+checkbox2.addEventListener('change', function () {
+    localStorage.setItem("autoJb", checkbox2.checked);
+    if (checkbox2.checked == true && jeilbrekBtn.disabled == false) {
         jailbreakCountdown();
+		label3.textContent = "Auto Jailbreak";
         return;
     }
-
+	label3.textContent = "Manual Jailbreak";
     stopInterval();
 });
 
@@ -43,23 +47,23 @@ function stopInterval(){
         clearInterval(timerId);
         timerId = null;
     }
-    label.textContent = "Auto Jailbreak";
+  		  
 }
 
 function jailbreakCountdown() {   
     stopInterval();
 
     let countdown = 5;
-    label.textContent = `Auto Jailbreaking in: ${countdown}`;
+    label2.textContent = `${countdown}`;
     timerId = setInterval(() => {
         countdown--;
-        label.textContent = `Auto Jailbreaking in: ${countdown}`;
+        label2.textContent = `${countdown}`;
 
         if (countdown < 0) {
             jeilbrekBtn.disabled = true; 
             clearInterval(timerId);
             timerId = null;
-            label.textContent = 'Executing';
+            label2.textContent = 'Executing';
             doJb();
         }
     }, 1000);
@@ -95,9 +99,16 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         lapseRadio.checked = true;
     }
+	
+	    // choose prefered exploit chain
+    if (autoJbValue == true) {
+        label3.textContent = "Auto Jailbreak";
+    } else {
+        label3.textContent = "Manual Jailbreak";
+    }
 
     // apply autojb localStorage value
-    checkbox.checked = autoJbValue;
+    checkbox2.checked = autoJbValue;
 
     if (autoJbValue) jailbreakCountdown();
 });
