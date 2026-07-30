@@ -495,11 +495,11 @@ img::-moz-selection {
 label span {
   display: block;
   cursor: pointer;
-  background-color: #fff;
+  background-color: #ffffff00;
   padding: 0.375em .75em;
   position: relative;
   margin-left: .0625em;
-  box-shadow: 0 0 0 0.0625em #b5bfd9;
+  box-shadow: 0 0 0 0.0625em #ffffff00;
   letter-spacing: .05em;
   color: #3e4963;
   text-align: center;
@@ -597,4 +597,290 @@ label:last-child span {
 .color-preview-1 {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+/* From Uiverse.io by zeeshan_2112 */ 
+.offer-card {
+
+  --bg-color: #0b0c10;
+  --bg-color-light: #12141a;
+  --bg-hover: #1a1c23;
+  --border-color: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(255, 255, 255, 0.1);
+  --text-primary: #ffffff;
+  --text-secondary: #9496a8;
+  --accent-primary: #8b5cf6;
+  --accent-primary-rgb: 139, 92, 246;
+  --accent-bg: #1f143d;
+
+  width: 100%;
+  max-width: 300px;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 1.25em;
+  font-size: 10px;
+  font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+  color: var(--text-primary);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-sizing;
+}
+
+.offer-card * {
+  box-sizing: border-box;
+}
+
+/* Left glow effect */
+.offer-card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -40px;
+  width: 60px;
+  height: 50%;
+  background: var(--accent-primary);
+  filter: blur(60px);
+  z-index: 0;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.offer-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Progress Bar */
+.offer-card__progress {
+  display: flex;
+  justify-content: center;
+  gap: 0.4em;
+  margin-bottom: 2em;
+}
+
+.offer-card__progress-step {
+  width: 2.2em;
+  height: 0.25em;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 1em;
+  transition: all 0.3s ease;
+}
+
+.offer-card__progress-step--active {
+  background: var(--accent-primary);
+  box-shadow: 0 0 10px rgba(var(--accent-primary-rgb), 0.5);
+}
+
+/* Header */
+.offer-card__header {
+  text-align: center;
+  margin-bottom: 2.5em;
+}
+
+.offer-card__icon-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.offer-card__title {
+  margin: 0 0 0.3em 0;
+  font-size: 1.35em;
+  font-weight: 600;
+}
+
+.offer-card__subtitle {
+  margin: 0;
+  font-size: 0.9em;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  padding: 0 0.5em;
+}
+
+/* Options */
+.offer-card__options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+  margin-bottom: 2.5em;
+}
+
+.offer-card__option {
+  cursor: pointer;
+  display: block;
+  user-select: none;
+  position: relative;
+}
+
+.offer-card__option-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.offer-card__option-content {
+  display: flex;
+  align-items: center;
+  padding: 0.8em 1.2em;
+  background: var(--bg-color-light);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  transition: all 0.25s ease;
+}
+
+.offer-card__option-input:hover + .offer-card__option-content {
+  background: var(--bg-hover);
+  border-color: var(--border-hover);
+}
+
+.offer-card__option-input:focus-visible + .offer-card__option-content {
+  box-shadow: 0 0 0 2px var(--accent-primary);
+}
+
+.offer-card__option-input:active + .offer-card__option-content {
+  transform: scale(0.98);
+}
+
+.offer-card__option-input:checked + .offer-card__option-content {
+  border-color: rgba(var(--accent-primary-rgb), 0.4);
+  background: rgba(var(--accent-primary-rgb), 0.1);
+}
+
+/* Icon Wrapper inside option */
+.offer-card__option-icon-wrapper {
+  width: 2.8em;
+  height: 2.8em;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-bg);
+  color: var(--accent-primary);
+  margin-right: 1.2em;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.offer-card__option-icon-wrapper svg {
+  width: 1.3em;
+  height: 1.3em;
+}
+
+.offer-card__option-text {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.offer-card__option-title {
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.offer-card__option-desc {
+  font-size: 0.8em;
+  color: var(--text-secondary);
+}
+
+/* Right arrow inside option */
+.offer-card__option-arrow {
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.offer-card__option-arrow svg {
+  width: 1em;
+  height: 1em;
+}
+
+.offer-card__option-input:checked
+  + .offer-card__option-content
+  .offer-card__option-arrow {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+.offer-card__option-input:hover
+  + .offer-card__option-content
+  .offer-card__option-arrow {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+/* Footer */
+.offer-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.offer-card__btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  padding: 0.5em 1em 0.5em 0.5em;
+  border-radius: 2em;
+  font-size: 0.9em;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.offer-card__btn--skip {
+  padding: 0.5em 0.5em 0.5em 1em;
+}
+
+.offer-card__btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+}
+
+.offer-card__btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--accent-primary);
+  outline: none;
+}
+
+.offer-card__btn:active {
+  transform: scale(0.96);
+}
+
+.offer-card__btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 10px;
+  color: inherit;
+}
+
+.offer-card__btn-icon svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+/* Folder specific */
+.folder-svg {
+  width: 72px;
+  height: 72px;
+  filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.5));
+}
+
 
